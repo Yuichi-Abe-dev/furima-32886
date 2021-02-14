@@ -6,11 +6,11 @@
 |Column    |Type  |Options|
 | -------- | ---- | ----------- |
 |nickname  |string|null: false|
-|email     |----  |-------|
-|password  |----  |-------|
-|first_name|----  |-------|
-|last_name |----  |-------|
-|birthday  |----  |-------|
+|email     |string|null: false|
+|password  |string|null: false|
+|first_name|string|null: false|
+|last_name |string|null: false|
+|birthday  |date  |null: false|
 
 
 ### Association
