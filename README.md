@@ -54,11 +54,11 @@
 |Column         |Type     |Options    |
 | --------      | ----    | --------- |
 |postal_code    |string   |null: false|
-|prefecture     |string   |null: false|
+|prefecture_id  |integer  |null: false|
 |municipalities |string   |null: false|
 |address_line1  |string   |null: false|
 |address_line2  |string   |           |
-|phone_number   |int      |null: false|
+|phone_number   |integer  |null: false|
 
 ### Association
 - belongs_to :purchase
