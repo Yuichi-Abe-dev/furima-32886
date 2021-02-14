@@ -50,3 +50,13 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :address
+
+## Addressesテーブル
+|Column      |Type         |Options    |
+| --------   | ----        | --------- |
+|user_id     |references   |null: false|
+|item_id     |references   |null: false|
+|address_id  |references   |null: false|
+
+### Association
+- belongs_to :purchase
