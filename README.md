@@ -30,8 +30,8 @@
 |prefecture   |string       |null: false|
 |shipping_date|date         |null: false|
 |price        |int          |null: false|
-|user_id      |references   |null: false|
-|purchase_id  |references   |           |
+|user_id      |references   |null: false, foreign_key: true|
+|purchase_id  |references   |foreign_key: true            |
 
 
 
@@ -42,9 +42,9 @@
 ## purchasesテーブル
 |Column      |Type         |Options    |
 | --------   | ----        | --------- |
-|user_id     |references   |null: false|
-|item_id     |references   |null: false|
-|address_id  |references   |null: false|
+|user_id     |references   |null: false, foreign_key: true|
+|item_id     |references   |null: false, foreign_key: true|
+|address_id  |references   |null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
