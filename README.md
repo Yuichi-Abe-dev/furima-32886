@@ -30,7 +30,7 @@
 |postage_id      |integer      |null: false|
 |prefecture_id   |integer      |null: false|
 |shipping_date_id|integer      |null: false|
-|price           |int          |null: false|
+|price           |integer      |null: false|
 |user_id         |references   |null: false, foreign_key: true|
 |purchase_id     |references   |foreign_key: true             |
 
