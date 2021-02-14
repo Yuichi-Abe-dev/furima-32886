@@ -23,7 +23,6 @@
 
 |Column       |Type         |Options    |
 | --------    | ----        | --------- |
-|image        |ActiveStorage|null: false|
 |name         |string       |null: false|
 |description  |text         |null: false, unique: true|
 |category     |string       |null: false|
