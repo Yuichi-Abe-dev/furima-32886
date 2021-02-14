@@ -14,4 +14,5 @@
 
 
 ### Association
-（ここに追記していく）
+- has_many :items
+- has_many :purchases
