@@ -3,10 +3,13 @@
 
 ## usersテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|------|----|-------|
-（ここに追記していく）
+|Column    |Type  |Options|
+|nickname  |string|null: false|
+|email     |----  |-------|
+|password  |----  |-------|
+|first_name|----  |-------|
+|last_name |----  |-------|
+|birthday  |----  |-------|
 
 
 ### Association
