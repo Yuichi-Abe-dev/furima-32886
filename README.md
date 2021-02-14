@@ -21,18 +21,18 @@
 
 ## itemsテーブル
 
-|Column       |Type         |Options    |
-| --------    | ----        | --------- |
-|name         |string       |null: false|
-|description  |text         |null: false, unique: true|
-|category     |string       |null: false|
-|condition    |string       |null: false|
-|postage      |string       |null: false|
-|prefecture   |string       |null: false|
-|shipping_date|date         |null: false|
-|price        |int          |null: false|
-|user_id      |references   |null: false, foreign_key: true|
-|purchase_id  |references   |foreign_key: true            |
+|Column          |Type         |Options    |
+| -------------- | ----        | --------- |
+|name            |string       |null: false|
+|description     |text         |null: false, unique: true|
+|category_id     |integer      |null: false|
+|condition_id    |integer      |null: false|
+|postage_id      |string       |null: false|
+|prefecture_id   |string       |null: false|
+|shipping_date_id|integer      |null: false|
+|price           |int          |null: false|
+|user_id         |references   |null: false, foreign_key: true|
+|purchase_id     |references   |foreign_key: true             |
 
 
 
