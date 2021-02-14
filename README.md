@@ -36,5 +36,5 @@
 
 
 ### Association
-- has_many :items
-- has_many :purchases
+- belongs_to :user
+- has_one :purchase
