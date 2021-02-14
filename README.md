@@ -52,11 +52,14 @@
 - has_one :address
 
 ## Addressesテーブル
-|Column      |Type         |Options    |
-| --------   | ----        | --------- |
-|user_id     |references   |null: false|
-|item_id     |references   |null: false|
-|address_id  |references   |null: false|
+|Column         |Type     |Options    |
+| --------      | ----    | --------- |
+|postal_code    |string   |null: false|
+|prefecture     |string   |null: false|
+|municipalities |string   |null: false|
+|address_line1  |string   |null: false|
+|address_line2  |string   |           |
+|phone_number   |int      |null: false|
 
 ### Association
 - belongs_to :purchase
