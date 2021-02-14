@@ -27,8 +27,8 @@
 |description     |text         |null: false, unique: true|
 |category_id     |integer      |null: false|
 |condition_id    |integer      |null: false|
-|postage_id      |string       |null: false|
-|prefecture_id   |string       |null: false|
+|postage_id      |integer      |null: false|
+|prefecture_id   |integer      |null: false|
 |shipping_date_id|integer      |null: false|
 |price           |int          |null: false|
 |user_id         |references   |null: false, foreign_key: true|
