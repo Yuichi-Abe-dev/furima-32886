@@ -31,7 +31,7 @@
 |shipping_date|date         |null: false|
 |price        |int          |null: false|
 |user_id      |references   |null: false|
-|purchase_id  |references   |null: false|
+|purchase_id  |references   |           |
 
 
 
