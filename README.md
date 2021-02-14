@@ -19,19 +19,19 @@
 
 ## itemsテーブル
 
-|Column    |Type  |Options    |
-| -------- | ---- | --------- |
-| image         | ActiveStorage   | null: false |
-|name       |string|null: false|
-|description|string|null: false, unique: true|
-|category|string|null: false|
-|condition |string|null: false|
-|postage  |date  |null: false|
-|prefecture  |string|null: false|
-|shipping_date|string|null: false|
-|price |string|null: false|
-|user_id  |date  |null: false|
-|purchase_id  |date  |null: false|
+|Column       |Type         |Options    |
+| --------    | ----        | --------- |
+|image        |ActiveStorage|null: false|
+|name         |string       |null: false|
+|description  |text         |null: false, unique: true|
+|category     |string       |null: false|
+|condition    |string       |null: false|
+|postage      |string       |null: false|
+|prefecture   |string       |null: false|
+|shipping_date|date         |null: false|
+|price        |int          |null: false|
+|user_id      |references   |null: false|
+|purchase_id  |references   |null: false|
 
 
 
