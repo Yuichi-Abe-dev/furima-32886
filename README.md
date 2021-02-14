@@ -38,3 +38,15 @@
 ### Association
 - belongs_to :user
 - has_one :purchase
+
+## purchasesテーブル
+|Column      |Type         |Options    |
+| --------   | ----        | --------- |
+|user_id     |references   |null: false|
+|item_id     |references   |null: false|
+|address_id  |references   |null: false|
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
