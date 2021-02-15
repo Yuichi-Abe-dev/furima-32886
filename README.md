@@ -59,6 +59,7 @@
 |address_line1  |string   |null: false|
 |address_line2  |string   |           |
 |phone_number   |integer  |null: false|
+|purchase       |references  |null: false, foreign_key: true|
 
 ### Association
 - belongs_to :purchase
