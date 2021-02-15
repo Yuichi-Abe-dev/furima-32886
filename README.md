@@ -24,7 +24,7 @@
 |Column          |Type         |Options    |
 | -------------- | ----        | --------- |
 |name            |string       |null: false|
-|description     |text         |null: false, unique: true|
+|description     |text         |null: false|
 |category_id     |integer      |null: false|
 |condition_id    |integer      |null: false|
 |postage_id      |integer      |null: false|
