@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe "ユーザーの新規登録", type: :system do
   before do
     @user = FactoryBot.build(:user)
   end
@@ -278,6 +278,67 @@ RSpec.describe "Users", type: :system do
       expect(current_path).to eq('/users')
       #エラーメッセージが表示されることを確認
       expect(page).to have_content("First name kana 全角カタカナを使用してください")
+    end
+  end
+end
+
+RSpec.describe "ユーザーのログイン", type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+  end
+  context 'ログインができるとき' do 
+    it '正しい情報を入力すればログインができてトップページに移動する' do
+      #新規登録画面に遷移し、ログインする
+      log_in(@user)
+    end
+  end
+  context 'ログインができないとき' do 
+    it 'メールアドレスが異なる場合、ログインページにとどまる' do
+      #新規登録画面に遷移
+      visit new_user_session_path
+      #ユーザー情報を入力
+      fill_in "email", with: ''
+      fill_in "password", with: @user.password
+      find('input[name="commit"]').click
+      #ログインページにとどまることを確認
+      expect(current_path).to eq('/users/sign_in')
+      #エラーメッセージが表示されていることを確認
+      expect(page).to have_content('Invalid Email or password.')
+    end
+    it 'パスワードが異なる場合、ログインページにとどまる' do
+      #新規登録画面に遷移
+      visit new_user_session_path
+      #ユーザー情報を入力
+      fill_in "email", with: @user.email
+      fill_in "password", with: ''
+      find('input[name="commit"]').click
+      #ログインページにとどまることを確認
+      expect(current_path).to eq('/users/sign_in')
+      #エラーメッセージが表示されていることを確認
+      expect(page).to have_content('Invalid Email or password.')
+    end
+  end
+end
+
+RSpec.describe "ユーザーのログアウト", type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+  end
+  context 'ログアウトができるとき' do 
+    it 'ログイン後にログアウトボタンが正常に表示されていればログアウトできる' do
+      ##新規登録画面に遷移し、ログインする
+      log_in(@user)
+      # カーソルを合わせるとログアウトボタンが表示されることを確認する
+      expect(
+        find('.nav').hover
+      ).to have_content('ログアウト')
+      #ログアウトボタンを押す
+      find('.logout').click
+      #トップベージに遷移することを確認
+      expect(current_path).to eq(root_path)
+      # サインアップページへ遷移するボタンやログインページへ遷移するボタンが表示されていることを確認する
+      expect(page).to have_content('新規登録')
+      expect(page).to have_content('ログイン')
     end
   end
 end
