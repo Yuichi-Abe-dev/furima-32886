@@ -197,8 +197,8 @@ RSpec.describe 'ユーザーの新規登録', type: :system do
       # 新規登録画面に遷移し、ユーザー情報を入力
       registration_user_info(@user)
       # ユーザー情報を入力する
-      fill_in 'password', with: '12345'
-      fill_in 'password-confirmation', with: '12345'
+      fill_in 'password', with: '123ab'
+      fill_in 'password-confirmation', with: '123ab'
       # サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
       expect  do
         find('input[name="commit"]').click
@@ -208,12 +208,42 @@ RSpec.describe 'ユーザーの新規登録', type: :system do
       # エラーメッセージが表示されることを確認
       expect(page).to have_content('Password is too short (minimum is 6 characters)')
     end
-    it 'passwordとpassword_confirmationが不一致の場合ユーザー新規登録ができずに新規登録ページへ戻ってくる' do
+    it 'パスワードが数字のみの場合ユーザー新規登録ができずに新規登録ページへ戻ってくる' do
       # 新規登録画面に遷移し、ユーザー情報を入力
       registration_user_info(@user)
       # ユーザー情報を入力する
       fill_in 'password', with: '123456'
-      fill_in 'password-confirmation', with: '1234567'
+      fill_in 'password-confirmation', with: '123456'
+      # サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
+      expect  do
+        find('input[name="commit"]').click
+      end.to change { User.count }.by(0)
+      # 新規登録ページへ戻されることを確認する
+      expect(current_path).to eq('/users')
+      # エラーメッセージが表示されることを確認
+      expect(page).to have_content('Password 半角英数を使用してください')
+    end
+    it 'パスワードが英字のみの場合ユーザー新規登録ができずに新規登録ページへ戻ってくる' do
+      # 新規登録画面に遷移し、ユーザー情報を入力
+      registration_user_info(@user)
+      # ユーザー情報を入力する
+      fill_in 'password', with: 'abcdef'
+      fill_in 'password-confirmation', with: 'abcdef'
+      # サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
+      expect  do
+        find('input[name="commit"]').click
+      end.to change { User.count }.by(0)
+      # 新規登録ページへ戻されることを確認する
+      expect(current_path).to eq('/users')
+      # エラーメッセージが表示されることを確認
+      expect(page).to have_content('Password 半角英数を使用してください')
+    end
+    it 'passwordとpassword_confirmationが不一致の場合ユーザー新規登録ができずに新規登録ページへ戻ってくる' do
+      # 新規登録画面に遷移し、ユーザー情報を入力
+      registration_user_info(@user)
+      # ユーザー情報を入力する
+      fill_in 'password', with: '123abc'
+      fill_in 'password-confirmation', with: '1234abc'
       # サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
       expect  do
         find('input[name="commit"]').click
