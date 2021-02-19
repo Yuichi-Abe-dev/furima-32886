@@ -1,4 +1,10 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :postage
+  belongs_to :prefecture
+  belongs_to :shipping_date
   belongs_to :user
   #Purchaseテーブル作成後にコメントアウトを外す
   #has_one :purchase
