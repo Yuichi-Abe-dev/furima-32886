@@ -9,5 +9,8 @@ class Item < ApplicationRecord
   #Purchaseテーブル作成後にコメントアウトを外す
   #has_one :purchase
   has_one_attached :image
-  validates :name, :description, :category_id, :condition_id, :postage_id, :prefecture_id, :shipping_date_id, :price, presence: true
+  validates :name, :description, :price, presence: true
+  with_options presence: true, numericality: { other_than: 1 } do
+    :category_id, :condition_id, :postage_id, :prefecture_id, :shipping_date_id
+  end
 end
