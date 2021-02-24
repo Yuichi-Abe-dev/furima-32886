@@ -11,6 +11,10 @@ class Item < ApplicationRecord
   has_one_attached :image
   validates :name, :description, :price, presence: true
   with_options presence: true, numericality: { other_than: 1 } do
-    :category_id, :condition_id, :postage_id, :prefecture_id, :shipping_date_id
+    validates :category_id
+    validates :condition_id
+    validates :postage_id
+    validates :prefecture_id
+    validates :shipping_date_id
   end
 end
