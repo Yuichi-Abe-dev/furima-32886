@@ -11,6 +11,11 @@ before_action :move_to_loginpage, only: :new
 
   def create
     @item = Item.create(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
 private
