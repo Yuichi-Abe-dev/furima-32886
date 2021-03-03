@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
     end
     context '商品の保存がうまくいくとき' do
       it '全てのカラムの値が存在していれば保存できること' do
-
+        expect(@item).to be_valid
       end
 
     end
