@@ -5,15 +5,20 @@ RSpec.describe "商品出品", type: :system do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
   end
-  context '出品画面への遷移' do
-    it 'ログインユーザーは商品投稿ページへ遷移できる' do
-      # トップページに遷移する
+  context '商品出品ページへの遷移' do
+    it 'ログインユーザーは商品出品ページへ遷移できる' do
+      # ログインする
+      log_in(@user)
       # 商品出品ページへ遷移する
+      visit new_item_path
+      # 商品投稿出品ページへ遷移できることを確認
+      expect(current_path).to eq(new_item_path)
     end
-    it 'ログインユーザーでないと投稿画面へ遷移ができない' do
-      # トップページに遷移する
+    it 'ログインユーザーでないと商品出品ページへ遷移ができずログインページへ遷移する' do
       # 商品出品ページへ遷移を試みる
-      # ログインページへ遷移する
+      visit new_item_path
+      # 商品投稿ページではなくログインページへ遷移する
+      expect(current_path).to eq(new_user_session_path)
     end
   end
 end
