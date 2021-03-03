@@ -1,10 +1,24 @@
 require 'rails_helper'
-
-RSpec.describe "Items", type: :request do
-  describe "GET /items" do
-    it "works! (now write some real specs)" do
-      get items_path
-      expect(response).to have_http_status(200)
+describe ItemsController, type: :request do
+  before do
+    @item = FactoryBot.create(:item)
+  end
+  describe "GET #index" do
+    it 'indexアクションにリクエストすると正常にレスポンスが返ってくる' do 
+      get root_path
+      expect(response.status).to eq 200
+    end
+    it 'indexアクションにリクエストするとレスポンスに出品済みの商品の名前が存在する' do 
+      get root_path
+      expect(response.body).to include(@item.name)
+    end
+    it 'indexアクションにリクエストするとレスポンスに出品済みの商品の説明が存在する' do 
+      get root_path
+      expect(response.body).to include(@item.description)
+    end
+    it 'indexアクションにリクエストするとレスポンスに出品済みの商品のユーザーIDが存在する' do 
+      get root_path
+      expect(response.body).to include(@item.user_id.to_s)
     end
   end
 end
