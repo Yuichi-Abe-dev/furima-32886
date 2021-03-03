@@ -94,7 +94,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
       end
-      it 'priceが自然数でない場合は保存できないこと' do
+      it 'priceが全角数字の場合は保存できないこと' do
+        @item.price = '１００００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'priceに文字列が含まれる場合は保存できないこと' do
         @item.price = 'a1000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
