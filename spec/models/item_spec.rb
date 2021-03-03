@@ -94,20 +94,20 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
       end
-      it 'priceに文字列が含まれる場合は保存できないこと' do
+      it 'priceが自然数でない場合は保存できないこと' do
         @item.price = 'a1000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
       it 'priceが300より小さい場合は保存できないこと' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
       it 'priceが9999999より大きい場合は保存できないこと' do
         @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
     end
   end
