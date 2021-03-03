@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   #Purchaseテーブル作成後にコメントアウトを外す
   #has_one :purchase
   has_one_attached :image
-  validates :name, :description, :price, presence: true
+  validates :image, :name, :description, :price, presence: true
   with_options presence: true, numericality: { other_than: 1 } do
     validates :category_id
     validates :condition_id
