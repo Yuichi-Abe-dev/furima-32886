@@ -44,13 +44,42 @@ RSpec.describe Item, type: :model do
 
       end
 
-      it 'が空では保存できないこと' do
-
-      end
-
       it 'priceが空では保存できないこと' do
 
       end
+
+      it 'userと紐付いていないと保存できないこと' do
+
+      end
+
+      it 'category_idが1では保存できないこと' do
+
+      end
+
+      it 'condition_idが1では保存できないこと' do
+
+      end
+
+      it 'postage_idが1では保存できないこと' do
+
+      end
+
+      it 'prefecture_idが1では保存できないこと' do
+
+      end
+
+      it 'shipping_date_idが1では保存できないこと' do
+
+      end
+
+      it 'priceに文字列が含まれる場合は保存できないこと' do
+
+      end
+
+      it 'priceが300から9999999の間でない場合は保存できないこと' do
+
+      end
+
     end
   end
 end
