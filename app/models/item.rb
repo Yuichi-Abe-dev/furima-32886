@@ -6,11 +6,11 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_date
   belongs_to :user
-  #Purchaseテーブル作成後にコメントアウトを外す
-  #has_one :purchase
+  # Purchaseテーブル作成後にコメントアウトを外す
+  # has_one :purchase
   has_one_attached :image
   validates :image, :name, :description, presence: true
-  with_options presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 } do
+  with_options presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 } do
     validates :price
   end
   with_options presence: true, numericality: { other_than: 1 } do
