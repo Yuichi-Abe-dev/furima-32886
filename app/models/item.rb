@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   # has_one :purchase
   has_one_attached :image
   with_options presence: true do
-    validates :image, :name , :description
+    validates :image, :name, :description
     with_options numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 } do
       validates :price
     end
