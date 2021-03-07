@@ -66,4 +66,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include RegistrationUserInfo
   config.include LogInSupport
+  config.include InputItemInfo
 end
