@@ -1,3 +1,4 @@
+=begin 商品購入機能実装時にコメントアウトを外す
 class CreatePurchases < ActiveRecord::Migration[6.0]
   def change
     create_table :purchases do |t|
@@ -7,3 +8,4 @@ class CreatePurchases < ActiveRecord::Migration[6.0]
     end
   end
 end
+=end
