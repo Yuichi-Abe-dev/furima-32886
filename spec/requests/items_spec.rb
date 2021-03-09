@@ -8,17 +8,21 @@ describe ItemsController, type: :request do
       get root_path
       expect(response.status).to eq 200
     end
+    it 'indexアクションにリクエストするとレスポンスに出品済みの商品の画像が存在する' do
+      get root_path
+      expect(response.body).to include(@item.image.id.to_s)
+    end
     it 'indexアクションにリクエストするとレスポンスに出品済みの商品の名前が存在する' do
       get root_path
       expect(response.body).to include(@item.name)
     end
-    it 'indexアクションにリクエストするとレスポンスに出品済みの商品の説明が存在する' do
+    it 'indexアクションにリクエストするとレスポンスに出品済みの商品の価格が存在する' do
       get root_path
-      expect(response.body).to include(@item.description)
+      expect(response.body).to include(@item.price.to_s)
     end
-    it 'indexアクションにリクエストするとレスポンスに出品済みの商品のユーザーIDが存在する' do
+    it 'indexアクションにリクエストするとレスポンスに出品済みの商品の配送料の負担が存在する' do
       get root_path
-      expect(response.body).to include(@item.user_id.to_s)
+      expect(response.body).to include(@item.postage.name)
     end
   end
 end
