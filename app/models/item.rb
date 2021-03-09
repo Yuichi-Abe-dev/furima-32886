@@ -6,8 +6,8 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_date
   belongs_to :user
-  #商品購入機能実装時にコメントアウトを外す
-  #has_one :purchase
+  # 商品購入機能実装時にコメントアウトを外す
+  # has_one :purchase
   has_one_attached :image
   with_options presence: true do
     validates :image, :name, :description
