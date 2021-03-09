@@ -10,7 +10,7 @@
       <%= image_tag(@item.image, class:"item-box-img") %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <%#商品購入機能実装時にコメントアウトを外す %>
-      <%# if item.purchase != nil %>
+      <%# if @item.purchase != nil %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
