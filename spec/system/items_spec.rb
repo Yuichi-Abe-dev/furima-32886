@@ -229,3 +229,47 @@ RSpec.describe '商品出品', type: :system do
     end
   end
 end
+
+RSpec.describe '商品情報編集', type: :system do
+  before do
+    @item = FactoryBot.create(:item)
+  end
+  context '編集画面への遷移ができない時' do
+    it '非ログインユーザーは編集画面へ遷移できない' do 
+    end
+    it '商品を出品したユーザーでないと編集画面へ遷移ができない' do
+    end
+  end
+  context '商品情報を編集できる時' do
+    it '商品を出品したユーザーは自身の商品の編集ができる' do
+    end
+  end
+  context '商品情報を編集できない時' do
+    it '画像が添付されていない場合は編集に失敗する' do
+    end
+    it 'nameが空欄の場合は編集に失敗する' do
+    end
+    it 'descriptionが空欄の場合は編集に失敗する' do
+    end
+    it 'categoryで「---」を選択した場合は編集に失敗する' do
+    end
+    it 'conditionで「---」を選択した場合は編集に失敗する' do
+    end
+    it 'postageで「---」を選択した場合は編集に失敗する' do
+    end
+    it 'prefectureで「---」を選択した場合は編集に失敗する' do
+    end
+    it 'shipping_dateで「---」を選択した場合は編集に失敗する' do
+    end
+    it 'priceが空欄の場合は編集に失敗する' do
+    end
+    it 'priceに文字列が含まれる場合は編集に失敗する' do
+    end
+    it 'priceが300より小さい場合は編集に失敗する' do
+    end
+    it 'priceが9999999より大きい場合は編集に失敗する' do
+    end
+    it '画像が添付されていない場合は編集に失敗する' do
+    end
+  end
+end
