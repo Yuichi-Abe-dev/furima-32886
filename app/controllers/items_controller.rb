@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_loginpage, only: :new
+  before_action :move_to_loginpage, only: [:new, :edit]
+  before_action :move_to_toppage, only: :edit
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -36,7 +37,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :condition_id, :postage_id, :prefecture_id,
                                  :shipping_date_id, :price, :image).merge(user_id: current_user.id)
@@ -45,4 +45,9 @@ class ItemsController < ApplicationController
   def move_to_loginpage
     redirect_to new_user_session_path unless user_signed_in?
   end
+
+  def move_to_toppage
+    @item = Item.find(params[:id])
+    redirect_to root_path unless user_signed_in? && current_user.id == @item.user_id
+  end 
 end
