@@ -2,35 +2,12 @@ require 'rails_helper'
 
 module EditItemInfo
   def edit_item_info(item)
-    #itemを出品したユーザーでサインインする
+    # itemを出品したユーザーでサインインする
     log_in(item.user)
     # 商品情報編集ページへ遷移する
     visit edit_item_path(item.id)
-    #編集前の商品情報がフォームに入力されていることの確認
-    expect(
-      find('#item-name').value
-    ).to eq(item.name)
-    expect(
-      find('#item-info').value
-    ).to eq(item.description)
-    expect(
-      find('#item-category').value
-    ).to eq(item.category_id.to_s)
-    expect(
-      find('#item-sales-status').value
-    ).to eq(item.condition_id.to_s)
-    expect(
-      find('#item-shipping-fee-status').value
-    ).to eq(item.postage_id.to_s)
-    expect(
-      find('#item-prefecture').value
-    ).to eq(item.prefecture_id.to_s)
-    expect(
-      find('#item-scheduled-delivery').value
-    ).to eq(item.shipping_date_id.to_s)
-    expect(
-      find('#item-price').value
-    ).to eq(item.price.to_s)
+    # 編集前の商品情報がフォームに入力されていることの確認
+    verify_remain_unedit(item)
     # 商品情報の編集
     # 添付する画像を定義する
     image_path = Rails.root.join('public/images/400x400_02.png')

@@ -9,6 +9,6 @@ module TestEditFailure
     # 商品詳細ページに戻ってくることを確認する
     expect(current_path).to eq(item_path(item.id))
     # エラーメッセージが表示されることを確認
-    expect(page).to have_content("#{error_message}")
+    expect(page).to have_content(error_message.to_s)
   end
 end

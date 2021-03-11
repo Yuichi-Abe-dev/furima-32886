@@ -69,4 +69,5 @@ RSpec.configure do |config|
   config.include InputItemInfo
   config.include EditItemInfo
   config.include TestEditFailure
+  config.include VerifyRemainUnedit
 end

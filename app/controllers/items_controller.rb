@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    if @item.update(item_params) 
+    if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
       render :edit
@@ -37,6 +37,7 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :condition_id, :postage_id, :prefecture_id,
                                  :shipping_date_id, :price, :image).merge(user_id: current_user.id)
@@ -49,5 +50,5 @@ class ItemsController < ApplicationController
   def move_to_toppage
     @item = Item.find(params[:id])
     redirect_to root_path unless user_signed_in? && current_user.id == @item.user_id
-  end 
+  end
 end

@@ -260,133 +260,133 @@ RSpec.describe '商品情報編集', type: :system do
       # 商品詳細ページに戻ってくることを確認する
       expect(current_path).to eq(item_path(@item.id))
       # トップページには先ほど変更した内容の商品情報が存在することを確認する
-      expect(page).to have_content("#{@item.name + "編集"}")
-      expect(page).to have_content("#{@item.description + "編集"}")
-      expect(page).to have_content("メンズ")
-      expect(page).to have_content("未使用に近い")
-      expect(page).to have_content("送料込み(出品者負担)")
-      expect(page).to have_content("青森県")
-      expect(page).to have_content("2〜3日で発送")
-      expect(page).to have_content("#{@item.price}")
+      expect(page).to have_content("#{@item.name}編集")
+      expect(page).to have_content("#{@item.description}編集")
+      expect(page).to have_content('メンズ')
+      expect(page).to have_content('未使用に近い')
+      expect(page).to have_content('送料込み(出品者負担)')
+      expect(page).to have_content('青森県')
+      expect(page).to have_content('2〜3日で発送')
+      expect(page).to have_content(@item.price.to_s)
       expect(page).to have_selector('img')
     end
   end
   context '商品情報を編集できない時' do
     it 'nameが空欄の場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # nameを空にする
-    fill_in 'item-name', with: ''
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Name can't be blank"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # nameを空にする
+      fill_in 'item-name', with: ''
+      # 編集失敗時のエラーメッセージの定義
+      error_message = "Name can't be blank"
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'descriptionが空欄の場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # descriptionを空にする
-    fill_in 'item-info', with: ''
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Description can't be blank"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # descriptionを空にする
+      fill_in 'item-info', with: ''
+      # 編集失敗時のエラーメッセージの定義
+      error_message = "Description can't be blank"
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'categoryで「---」を選択した場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # 「---」を選択する
-    select '---', from: 'item-category'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Category must be other than 1"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # 「---」を選択する
+      select '---', from: 'item-category'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Category must be other than 1'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'conditionで「---」を選択した場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # 「---」を選択する
-    select '---', from: 'item-sales-status'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Condition must be other than 1"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # 「---」を選択する
+      select '---', from: 'item-sales-status'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Condition must be other than 1'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'postageで「---」を選択した場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # 「---」を選択する
-    select '---', from: 'item-shipping-fee-status'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Postage must be other than 1"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # 「---」を選択する
+      select '---', from: 'item-shipping-fee-status'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Postage must be other than 1'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'prefectureで「---」を選択した場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # 「---」を選択する
-    select '---', from: 'item-prefecture'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Prefecture must be other than 1"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # 「---」を選択する
+      select '---', from: 'item-prefecture'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Prefecture must be other than 1'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'shipping_dateで「---」を選択した場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # 「---」を選択する
-    select '---', from: 'item-scheduled-delivery'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Shipping date must be other than 1"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # 「---」を選択する
+      select '---', from: 'item-scheduled-delivery'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Shipping date must be other than 1'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'priceが空欄の場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    # priceを空にする
-    fill_in 'item-price', with: ''
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Price can't be blank"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      # priceを空にする
+      fill_in 'item-price', with: ''
+      # 編集失敗時のエラーメッセージの定義
+      error_message = "Price can't be blank"
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'priceが全角数字の場合は編集に失敗する' do
       # 商品情報を編集
       edit_item_info(@item)
       fill_in 'item-price', with: '１００００'
       # 編集失敗時のエラーメッセージの定義
-      error_message = "Price is not a number"
+      error_message = 'Price is not a number'
       # 編集失敗時にエラーメッセージが表示されることの確認
       test_edit_failure(@item, error_message)
-      end
+    end
     it 'priceに文字列が含まれる場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    fill_in 'item-price', with: 'a1000'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Price is not a number"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      fill_in 'item-price', with: 'a1000'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Price is not a number'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'priceが300より小さい場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    fill_in 'item-price', with: '299'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Price must be greater than or equal to 300"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      fill_in 'item-price', with: '299'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Price must be greater than or equal to 300'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
     it 'priceが9999999より大きい場合は編集に失敗する' do
-    # 商品情報を編集
-    edit_item_info(@item)
-    fill_in 'item-price', with: '100000000'
-    # 編集失敗時のエラーメッセージの定義
-    error_message = "Price must be less than or equal to 9999999"
-    # 編集失敗時にエラーメッセージが表示されることの確認
-    test_edit_failure(@item, error_message)
+      # 商品情報を編集
+      edit_item_info(@item)
+      fill_in 'item-price', with: '100000000'
+      # 編集失敗時のエラーメッセージの定義
+      error_message = 'Price must be less than or equal to 9999999'
+      # 編集失敗時にエラーメッセージが表示されることの確認
+      test_edit_failure(@item, error_message)
     end
   end
 end
