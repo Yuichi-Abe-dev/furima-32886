@@ -8,7 +8,7 @@ module LogInSupport
     # ヘッダーにカーソルを合わせるとニックネームが表示されることを確認する
     expect(
       find('.nav').hover
-    ).to have_content(@user.nickname)
+    ).to have_content(user.nickname)
     # サインアップページへ遷移するボタンや、ログインページへ遷移するボタンが表示されていないことを確認する
     expect(page).to have_no_content('新規登録')
     expect(page).to have_no_content('ログイン')

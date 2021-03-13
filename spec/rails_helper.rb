@@ -67,4 +67,7 @@ RSpec.configure do |config|
   config.include RegistrationUserInfo
   config.include LogInSupport
   config.include InputItemInfo
+  config.include EditItemInfo
+  config.include TestEditFailure
+  config.include VerifyRemainUnedit
 end
