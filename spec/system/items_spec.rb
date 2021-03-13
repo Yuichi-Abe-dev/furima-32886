@@ -404,3 +404,22 @@ RSpec.describe '商品情報編集', type: :system do
     end
   end
 end
+
+RSpec.describe '商品情報削除', type: :system do
+  before do
+    @item = FactoryBot.create(:item)
+  end
+  context '削除ができない時' do
+    it 'ログインしていないユーザーの詳細ページには削除ボタンが表示されない'
+
+    end
+    it '出品者ではないログインユーザーの場合、詳細ページには削除ボタンが表示されない'
+
+    end
+  end
+  context '削除ができる時' do
+    it '出品者の場合、出品した商品を削除することができる'
+
+    end
+  end
+end
