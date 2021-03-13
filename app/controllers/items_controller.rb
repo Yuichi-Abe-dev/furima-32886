@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_loginpage, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update] 
   before_action :move_to_toppage, only: :edit
   before_action :set_item, only: [:show, :edit, :update]
 
@@ -39,10 +39,6 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description, :category_id, :condition_id, :postage_id, :prefecture_id,
                                  :shipping_date_id, :price, :image).merge(user_id: current_user.id)
-  end
-
-  def move_to_loginpage
-    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def move_to_toppage
