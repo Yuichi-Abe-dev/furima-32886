@@ -247,6 +247,20 @@ RSpec.describe '商品情報編集', type: :system do
       expect(current_path).to eq(root_path)
     end
   end
+  context '編集画面から詳細ページへの遷移' do
+    it '編集画面からもどるボタンで詳細ページへ遷移できる' do
+      # itemを出品したユーザーでサインインする
+    log_in(@item.user)
+    # 商品情報編集ページへ遷移する
+    visit edit_item_path(@item.id)
+    # もどるボタンの存在を確認
+    expect(page).to have_content('もどる')
+    # もどるボタンをクリックする
+    click_on ('もどる')
+    # 商品詳細ページに戻ってくることを確認する
+    expect(current_path).to eq(item_path(@item.id))
+    end
+  end
   context '商品情報を編集できる時' do
     it '商品を出品したユーザーは自身の商品の編集ができる' do
       # 商品情報を編集
