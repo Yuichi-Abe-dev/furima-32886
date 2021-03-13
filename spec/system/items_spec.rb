@@ -410,16 +410,42 @@ RSpec.describe '商品情報削除', type: :system do
     @item = FactoryBot.create(:item)
   end
   context '削除ができない時' do
-    it 'ログインしていないユーザーの詳細ページには削除ボタンが表示されない'
-
+    it 'ログインしていないユーザーの場合、商品詳細ページには削除ボタンが表示されない' do
+      # 商品詳細ページへ遷移する
+      visit item_path(@item.id)
+      # 削除ボタンが存在しないことを確認
+      expect(page).to have_no_content('削除')
     end
-    it '出品者ではないログインユーザーの場合、詳細ページには削除ボタンが表示されない'
-
+    it '出品者ではないログインユーザーの場合、商品詳細ページには削除ボタンが表示されない' do
+      @user = FactoryBot.create(:user)
+      # 商品を出品したユーザーとは別のユーザーがログインする
+      log_in(@user)
+      # 商品情報編集ページへ遷移する
+      visit item_path(@item.id)
+      # 削除ボタンが存在しないことを確認
+      expect(page).to have_no_content('削除')
     end
   end
   context '削除ができる時' do
-    it '出品者の場合、出品した商品を削除することができる'
-
+    it '出品者の場合、出品した商品を削除することができる' do
+      # itemを出品したユーザーでサインインする
+      log_in(@item.user)
+      # 商品詳細ページへ遷移する
+      visit item_path(@item.id)
+      # 削除ボタンの存在を確認
+      expect(page).to have_content('削除')
+      # 削除ボタンをクリックするとItemモデルのカウントが減ること確認
+      expect{
+        click_on('削除')
+      }.to change { Item.count }.by(-1)
+      # 削除後にトップページに遷移したことを確認する
+      expect(current_path).to eq(root_path)
+      # トップページに遷移する
+      visit root_path
+      # トップページには先ほど削除した内容の商品が存在しないことを確認する
+      expect(page).to have_no_content("#{@item.name}")
+      expect(page).to have_no_content("#{@item.price}")
+      expect(page).to have_no_content("#{@item.postage.name}")
     end
   end
 end
