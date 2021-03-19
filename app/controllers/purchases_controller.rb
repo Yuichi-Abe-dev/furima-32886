@@ -1,10 +1,14 @@
 class PurchasesController < ApplicationController
   def index
     @item_purchase = ItemPurchase.new
+    #@item = Item.find(params[:item_id])
   end
  
   def create
-    @item_purchase = ItemPurchase.new(purchase_params)
+    #@item_purchase = ItemPurchase.new(purchase_params)
+    #@item = Item.find(params[:item_id])
+    @item_purchase = ItemPurchase.find(params[:item_id])
+    #@item_purchase = @item.purchases.new(purchase_params)
      if @item_purchase.valid?
        @item_purchase.save
        redirect_to root_path

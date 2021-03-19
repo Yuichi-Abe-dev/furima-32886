@@ -10,7 +10,7 @@
       <%= image_tag "item-sample.png", class: 'buy-item-img' %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= "商品名" %>
+          <%= '商品名' %>
         </h2>
         <div class='buy-item-price'>
           <p class='item-price-text'>¥<%= '999,999,999' %></p>
@@ -30,8 +30,7 @@
       </p>
     </div>
     <%# /支払額の表示 %>
-    <%# form_with (model: @item_purchase, url: purchases_path(@item.id), id: 'charge-form', class: 'transaction-form-wrap',local: true) do |f| %>
-    <%= form_with model: @item_purchase, url: purchases_path(@item_id), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= form_with model: @item_purchase, url: purchases_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
