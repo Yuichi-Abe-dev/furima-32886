@@ -1,6 +1,7 @@
 class ItemPurchase
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipalities, :address_line1, :address_line2, :phone_number, :purchase_id
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipalities, :address_line1, :address_line2, :phone_number
+  #, :purchase_id
 
   with_options presence: true do
     validates :municipalities, :address_line1
@@ -11,8 +12,8 @@ class ItemPurchase
 
   def save
     # 購入情報を保存
-    Purchase.create(user_id: user.id, item_id: item.id)
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
     # 住所の情報を保存
-    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address_line1: address_line1, address_line2: address_line2, phone_number: phone_number, purchase_id: purchase_id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, municipalities: municipalities, address_line1: address_line1, address_line2: address_line2, phone_number: phone_number, purchase_id: purchase.id)
   end
 end
