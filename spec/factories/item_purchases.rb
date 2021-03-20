@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :purchase do
+  factory :item_purchase do
     token {"tok_abcdefghijk00000000000000000"}
     postal_code { "000-0000" }
     prefecture_id { Faker::Number.between(from: 2, to: 48) }
