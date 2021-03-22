@@ -5,15 +5,15 @@ RSpec.describe ItemPurchase, type: :model do
     before do
       @purchase = FactoryBot.build(:item_purchase)
     end
-    it "tokenと購入先情報があれば保存ができること" do
+    it 'tokenと購入先情報があれば保存ができること' do
       expect(@purchase).to be_valid
     end
-    it "tokenが空では登録できないこと" do
+    it 'tokenが空では登録できないこと' do
       @purchase.token = nil
       @purchase.valid?
       expect(@purchase.errors.full_messages).to include("Token can't be blank")
     end
-    it "postal_codeが空では登録できないこと" do
+    it 'postal_codeが空では登録できないこと' do
       @purchase.postal_code = ''
       @purchase.valid?
       expect(@purchase.errors.full_messages).to include("Postal code can't be blank")
@@ -21,7 +21,7 @@ RSpec.describe ItemPurchase, type: :model do
     it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
       @purchase.postal_code = '1234567'
       @purchase.valid?
-      expect(@purchase.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      expect(@purchase.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
     end
     it 'prefecture_idが空では保存できないこと' do
       @purchase.prefecture_id = ''
@@ -55,17 +55,17 @@ RSpec.describe ItemPurchase, type: :model do
     it 'phone_numberが半角数字ではないと保存できないこと' do
       @purchase.phone_number = '000-1111-2222'
       @purchase.valid?
-      expect(@purchase.errors.full_messages).to include("Phone number is invalid. Enter 10 or 11 digit.")
+      expect(@purchase.errors.full_messages).to include('Phone number is invalid. Enter 10 or 11 digit.')
     end
     it 'phone_numberが10桁未満では保存できないこと' do
       @purchase.phone_number = '123456789'
       @purchase.valid?
-      expect(@purchase.errors.full_messages).to include("Phone number is invalid. Enter 10 or 11 digit.")
+      expect(@purchase.errors.full_messages).to include('Phone number is invalid. Enter 10 or 11 digit.')
     end
     it 'phone_numberが12桁以上では保存できないこと' do
       @purchase.phone_number = '000111122223'
       @purchase.valid?
-      expect(@purchase.errors.full_messages).to include("Phone number is invalid. Enter 10 or 11 digit.")
+      expect(@purchase.errors.full_messages).to include('Phone number is invalid. Enter 10 or 11 digit.')
     end
   end
 end
