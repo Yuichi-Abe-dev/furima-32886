@@ -1,11 +1,11 @@
 class PurchasesController < ApplicationController
+  before_action :set_purchase, only: [:index, :create]
+
   def index
     @item_purchase = ItemPurchase.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @item_purchase = ItemPurchase.new(purchase_params)
     if @item_purchase.valid?
       pay_item
@@ -24,6 +24,10 @@ class PurchasesController < ApplicationController
                                           :address_line1, :address_line2, :phone_number).merge(
                                             user_id: current_user.id, item_id: @item.id, token: params[:token]
                                           )
+  end
+
+  def set_purchase
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item
