@@ -3,7 +3,12 @@ require 'rails_helper'
 RSpec.describe ItemPurchase, type: :model do
   describe '商品購入情報の保存' do
     before do
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
       @purchase = FactoryBot.build(:item_purchase)
+      sleep 0.02 #インスタンス生成時にエラーが発生するため待機処理を実行
+      @purchase.user_id = @user.id
+      @purchase.item_id = @item.id
     end
     it 'tokenと購入先情報があれば保存ができること' do
       expect(@purchase).to be_valid
@@ -66,6 +71,21 @@ RSpec.describe ItemPurchase, type: :model do
       @purchase.phone_number = '000111122223'
       @purchase.valid?
       expect(@purchase.errors.full_messages).to include('Phone number is invalid. Enter 10 or 11 digit.')
+    end
+    it 'phone_numberが12桁以上では保存できないこと' do
+      @purchase.phone_number = '000111122223'
+      @purchase.valid?
+      expect(@purchase.errors.full_messages).to include('Phone number is invalid. Enter 10 or 11 digit.')
+    end
+    it 'userと紐付いていないと保存できないこと' do
+      @purchase.user_id = nil
+      @purchase.valid?
+      expect(@purchase.errors.full_messages).to include("User can't be blank")
+    end
+    it 'itemと紐付いていないと保存できないこと' do
+      @purchase.item_id = nil
+      @purchase.valid?
+      expect(@purchase.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
