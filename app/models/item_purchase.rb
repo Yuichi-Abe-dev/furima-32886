@@ -6,7 +6,7 @@ class ItemPurchase
   # , :purchase_id
 
   with_options presence: true do
-    validates :municipalities, :address_line1, :token
+    validates :municipalities, :address_line1, :token, :user_id, :item_id
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :phone_number, format: { with: /\A\d{10}$|^\d{11}\z/, message: 'is invalid. Enter 10 or 11 digit.' }
