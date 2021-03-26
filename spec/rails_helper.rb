@@ -70,4 +70,6 @@ RSpec.configure do |config|
   config.include EditItemInfo
   config.include TestEditFailure
   config.include VerifyRemainUnedit
+  config.include InputPurchaseInfo
+  config.include PurchaceFailure
 end
