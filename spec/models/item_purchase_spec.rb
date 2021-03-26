@@ -6,7 +6,7 @@ RSpec.describe ItemPurchase, type: :model do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.create(:item)
       @purchase = FactoryBot.build(:item_purchase)
-      sleep 0.02 #インスタンス生成時にエラーが発生するため待機処理を実行
+      sleep 0.02 # インスタンス生成時にエラーが発生するため待機処理を実行
       @purchase.user_id = @user.id
       @purchase.item_id = @item.id
     end

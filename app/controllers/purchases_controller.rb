@@ -42,6 +42,6 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_toppage
-    redirect_to root_path if current_user.id == @item.user_id || @item.purchase != nil
+    redirect_to root_path if current_user.id == @item.user_id || !@item.purchase.nil?
   end
 end
