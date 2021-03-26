@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_purchase, only: [:index, :create]
+  before_action :move_to_toppage, only: [:index, :create]
 
   def index
     @item_purchase = ItemPurchase.new
@@ -37,5 +39,9 @@ class PurchasesController < ApplicationController
       card: purchase_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def move_to_toppage
+    redirect_to root_path if current_user.id == @item.user_id || @item.purchase != nil
   end
 end
