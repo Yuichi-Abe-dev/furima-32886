@@ -72,11 +72,6 @@ RSpec.describe ItemPurchase, type: :model do
       @purchase.valid?
       expect(@purchase.errors.full_messages).to include('Phone number is invalid. Enter 10 or 11 digit.')
     end
-    it 'phone_numberが12桁以上では保存できないこと' do
-      @purchase.phone_number = '000111122223'
-      @purchase.valid?
-      expect(@purchase.errors.full_messages).to include('Phone number is invalid. Enter 10 or 11 digit.')
-    end
     it 'userと紐付いていないと保存できないこと' do
       @purchase.user_id = nil
       @purchase.valid?
