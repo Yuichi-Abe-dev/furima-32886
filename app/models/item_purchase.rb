@@ -3,8 +3,6 @@ class ItemPurchase
   attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipalities, :address_line1, :address_line2,
                 :phone_number, :token
 
-  # , :purchase_id
-
   with_options presence: true do
     validates :municipalities, :address_line1, :token, :user_id, :item_id
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
