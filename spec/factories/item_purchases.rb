@@ -7,7 +7,5 @@ FactoryBot.define do
     address_line1 { "#{Gimei.town.kanji}1-2-3" }
     address_line2 { Faker::Address.secondary_address }
     phone_number { '00011112222' }
-    user_id { 1 }
-    item_id { 1 }
   end
 end
