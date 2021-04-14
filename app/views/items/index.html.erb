@@ -131,12 +131,11 @@
         <%= link_to(item_path(item.id)) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
-          <%#商品購入機能実装時にコメントアウトを外す %>
-          <%# if item.purchase != nil %>
+          <% if item.purchase != nil %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# end %>
+          <% end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>

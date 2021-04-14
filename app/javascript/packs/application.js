@@ -17,3 +17,4 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 require("../calculate")
+require("../card")
