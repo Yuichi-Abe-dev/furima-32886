@@ -11,7 +11,6 @@ class PurchasesController < ApplicationController
     @item_purchase = ItemPurchase.new(purchase_params)
     if @item_purchase.valid?
       pay_item
-      binding.pry
       @item_purchase.save
       redirect_to root_path
     else
