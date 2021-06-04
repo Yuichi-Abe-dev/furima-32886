@@ -18,3 +18,4 @@ require("channels")
 
 require("../calculate")
 require("../card")
+require('../preview') 
